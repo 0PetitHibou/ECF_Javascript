@@ -12,7 +12,8 @@
   </header>
 
   <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="🔍 Rechercher une recette..." />
+    <input type="text" id="searchInput" placeholder=" Rechercher une recette..." onkeyup="main()" />
+    <button onclick="main()">🔍</button>
   </div>
 
   <section class="recipes-grid" id="recipesContainer">
@@ -55,5 +56,6 @@
       </ul>
     </article>
   </section>
+  <script src="assets/script/script.js"></script>
 </body>
 </html>
