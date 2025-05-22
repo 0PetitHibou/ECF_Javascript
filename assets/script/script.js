@@ -1,5 +1,3 @@
-
-
 async function fetchData() {
     const response = await fetch("assets/data/recette.json");
     const data = await response.json();
@@ -7,16 +5,16 @@ async function fetchData() {
     return recipes;
 }
 
+
 async function displayRecipes(recipes) 
 {
-
-
     const container = document.querySelector("#recipesContainer");
     container.innerHTML = " ";
 
     recipes.forEach(recipe => {
         const article = document.createElement("article");
         article.classList.add("recipe-card")
+
         article.innerHTML = `
       <h2>${recipe.name}</h2>
       <p><strong>Nombre de personnes :${recipe.servings}</p>
@@ -30,17 +28,7 @@ async function displayRecipes(recipes)
         `;
         container.appendChild(article);
     })
-
 }
-
-function searchFilter() 
-{
-    recipes.forEach(recipe => {
-
-    })
-            
-}
-
 
 
 async function main()
@@ -50,10 +38,9 @@ async function main()
 
     let newData = data.filter((element) =>  {
         return element.name.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim())
-
     });
-    displayRecipes(newData);
 
+    displayRecipes(newData);
 }
 
 main();
