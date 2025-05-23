@@ -52,7 +52,12 @@ header h1 {
 }
 
 .recipe-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
   background: white;
+  border:solid rgba(255, 166, 0, 0.597) 1px;
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
@@ -79,20 +84,20 @@ header h1 {
 }
 
 
-  .popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: whitesmoke;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-  max-width: 80%;
-  max-height: 80%;
-  overflow: auto;
-  display: none;
+.popup {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: whitesmoke;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+z-index: 9999;
+max-width: 80%;
+max-height: 80%;
+overflow: auto;
+display: none;
 }
 
 .popup h2 {
@@ -102,6 +107,7 @@ header h1 {
 }
   
 .open, .close {
+    width:7em;
     border : 1px solid #adadad; 
     background-color : #f08730; 
     color: whitesmoke;

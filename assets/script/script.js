@@ -7,89 +7,11 @@ async function fetchData() {
     return recipes;
 }
 
-// créer et afficher les données
+// Créer des balises, class etc...et affiche les données choisie depuis le fichier recette.json
 async function displayRecipes(recipes) 
 {
     const container = document.querySelector("#recipesContainer");
     container.innerHTML = " ";
-
-    recipes.forEach(recipe => {
-        const article = document.createElement("article");
-        article.classList.add("recipe-card")
-        article.innerHTML = `
-      <h2>${recipe.name}</h2>
-      <p><strong>Nombre de personnes :${recipe.servings}</p>
-      <ul>
-
-        ${recipe.ingredients.map((element) => {
-         return `<li>${element.ingredient}</li>`
-        })}
-
-      </ul>
-      <button class="open">ouvrir</button>       `;
-
-      const open = article.querySelector(".open");
-
-      open.addEventListener("click", (e) =>{
-        e.preventDefault();
-
-      })
-
-        container.appendChild(article);
-
-    })
-
-}
-
-async function main()
-{
-    const searchInput = document.querySelector("#searchInput").value.replaceAll(' ', '').toUpperCase().trim();
-    let data = await fetchData();
-
-    let newData = data.filter((element) =>  {
-        return element.name.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim())
-
-    });
-    displayRecipes(newData);
-}
-
-function popupWindow(recipe)
-{
-    openModal();
-
-
-
-    const popup = document.querySelector(".popup");
-    popup.innerHTML = " ";
-
-        popup.innerHTML = `
-            <h2>${recipe.name}</h2>
-            <p><strong>Nombre de personnes :${recipe.servings}</p>
-            <ul><span>ingrédients</span><hr><br>
-
-        ${recipe.ingredients.map(element => {
-            const unitTrue = element.unit ? ` ${element.unit}` : "";
-            const quantityTrue = element.quantity ? `${element.quantity}` : "";
-            return `<li>${element.ingredient} : ${quantityTrue}${unitTrue}</li>`;
-        }).join('')}
-
-            <p><span>Description : </span><br> ${recipe.description}</p>
-            <p><span>Temps : </span>${recipe.time} min</p>
-            <p><span>Ustensile : </span><br>${recipe.ustensils}</p>
-            <p><span>Appareil : </span><br>${recipe.appliance}</p><br>
-
-        <button class="close" onclick="closeModal()">Fermer</button>
-
-        </ul>`;
-        
-}
-
-// --------------------------------------------
-
-async function displayRecipes(recipes) 
-{
-    const pop = document.querySelector("#recipesContainer");
-    pop.innerHTML = " ";
 
     recipes.forEach(recipe => {
         const article = document.createElement("article");
@@ -117,9 +39,53 @@ async function displayRecipes(recipes)
 
 
         article.append(title, servings, ul, button);
-        pop.appendChild(article);
+        container.appendChild(article);
     })
 }
+
+// Récupère les données entré dans la barre de recherche - vérifie si il y a concordance entre les titres des recettes et la recherche
+async function main()
+{
+    const searchInput = document.querySelector("#searchInput").value.replaceAll(' ', '').toUpperCase().trim();
+    let data = await fetchData();
+
+    let newData = data.filter((element) =>  {
+        return element.name.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim())
+
+    });
+    displayRecipes(newData);
+}
+
+// créer des balises et affiche des données dans une fenêtre popup
+function popupWindow(recipe)
+{
+    openModal();
+
+    const popup = document.querySelector(".popup");
+    popup.innerHTML = " ";
+
+        popup.innerHTML = `
+            <h2>${recipe.name}</h2>
+            <p><strong>Nombre de personnes :${recipe.servings}</p>
+            <ul><span>ingrédients</span><hr><br>
+
+        ${recipe.ingredients.map(element => {
+            const unitTrue = element.unit ? ` ${element.unit}` : "";
+            const quantityTrue = element.quantity ? `${element.quantity}` : "";
+            return `<li>${element.ingredient} : ${quantityTrue}${unitTrue}</li>`;
+        }).join('')}
+
+            <p><span>Description : </span><br> ${recipe.description}</p>
+            <p><span>Temps : </span>${recipe.time} min</p>
+            <p><span>Ustensile : </span><br>${recipe.ustensils}</p>
+            <p><span>Appareil : </span><br>${recipe.appliance}</p><br>
+
+        <button class="close" onclick="closeModal()">Fermer</button>
+
+        </ul>`;
+        
+}
+
 
 function openModal()
 {
@@ -129,6 +95,5 @@ function closeModal()
 {
     document.querySelector(".popup").style.display = "none";
 }
-
 
 main();
