@@ -51,8 +51,8 @@ async function main()
 
     let newData = data.filter((element) =>  {
         return element.name.toUpperCase().includes(searchInput.replaceAll(' ', '').toUpperCase().trim())
-
     });
+
     displayRecipes(newData);
 }
 
