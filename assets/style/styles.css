@@ -77,3 +77,43 @@ header h1 {
 .recipe-card li {
   margin-bottom: 6px;
 }
+
+
+  .popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  display: none;
+}
+
+.popup h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #ff7f50;
+}
+  
+.open, .close {
+    border : 1px solid #adadad; 
+    background-color : #f08730; 
+    color: whitesmoke;
+    padding : 5px 15px; 
+    cursor : pointer;
+    border-radius:10px;
+    font-weight: 600;
+}
+
+p, ul{
+  font-weight:400
+}
+span {
+  font-weight: 800;
+}
